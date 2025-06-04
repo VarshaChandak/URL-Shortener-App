@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f1123 0%, #1c1f39 100%);
+  color: #e0e7ff;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+header svg {
+  width: 40px;
+  height: 40px;
+  fill: #7c3aed;
+  transition: transform 0.3s ease;
+}
+header svg:hover {
+  transform: rotate(15deg);
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #a78bfa;
+}
+
+form {
+  background-color: #21254b;
+  padding: 28px 36px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(124, 58, 181, 0.4);
+  display: flex;
+  gap: 18px;
+  max-width: 520px;
+  width: 100%;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 2px solid #5b4dbf;
+  background-color: #151836;
+  color: #dcdffd;
+  font-size: 1.2rem;
+  outline: none;
+}
+input:focus {
+  border-color: #a78bfa;
+}
+input::placeholder {
+  color: #8a8fbf;
+}
+
+button {
+  background: linear-gradient(145deg, #7c3aed, #5922cc);
+  border: none;
+  padding: 16px 44px;
+  border-radius: 14px;
+  color: #e0e7ff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 16px rgba(124, 58, 181, 0.6);
+}
+button:hover {
+  background: linear-gradient(145deg, #9b70ff, #7749e6);
+}
+button:active {
+  transform: scale(0.96);
+}
+
+.result {
+  margin-top: 44px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #b2b7ff;
+  max-width: 520px;
+  text-align: center;
+  min-height: 42px;
+}
+.result a {
+  color: #c3b5ff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.result a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 580px) {
+  form {
+    flex-direction: column;
+    padding: 24px;
+  }
+  input[type="text"], button {
+    width: 100%;
+  }
+}
