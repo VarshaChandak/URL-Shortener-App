@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <header>
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M10.59 13.41a2 2 0 0 1 0-2.82l4.24-4.24a2 2 0 0 1 2.83 2.83l-1.42 1.42"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13.41 10.59a2 2 0 0 1 0 2.82l-4.24 4.24a2 2 0 0 1-2.83-2.83l1.42-1.42"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h1>URL Shortener</h1>
+  </header>
+
+  <form id="form" autocomplete="off">
+    <input type="text" id="longUrl" placeholder="Paste your link here..." required />
+    <button type="submit">Shorten</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
