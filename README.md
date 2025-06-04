@@ -37,9 +37,8 @@ A simple, fast, and user-friendly web application to shorten long URLs into comp
    cd URL-Shortener-App
 
   2.Install dependencies
-    ```bash
-
-         npm install
+  
+      npm install
 
  3. Start the backend server
 
