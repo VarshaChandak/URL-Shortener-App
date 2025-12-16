@@ -1,54 +1,52 @@
-# URL-Shortener-App 🚀
+# 🛡️ Secure URL Shortener App 🚀
 
-A simple, fast, and user-friendly web application to shorten long URLs into compact, shareable links.
+A fast and secure web application to shorten long URLs into compact, shareable links. Integrated with **Google Safe Browsing** to automatically block malicious content.
 
 ---
 
 ## 🚀 Features
 
-- **Easy to Use:** Paste your long URL and get a shortened link instantly.
-- **Clean UI:** Minimalistic and responsive design for smooth user experience.
-- **Fast Backend:** Powered by Node.js, Express, and NanoID for generating unique short URLs.
-- **Copy & Share:** Quickly copy the shortened URL for sharing anywhere.
+- **🛡️ Active Security:** Automatically scans URLs for malware and phishing before shortening.
+- **⚡ Fast Shortening:** Powered by Node.js and NanoID.
+- **🎨 Clean UI:** Responsive and user-friendly interface.
+- **📋 Copy & Share:** One-click copy functionality.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
 - **Backend:** Node.js, Express.js, NanoID
+- **Security:** Google Safe Browsing API, Dotenv
 - **Frontend:** HTML, CSS, JavaScript
-- **Others:** Fetch API for client-server communication
 
 ---
 
-## 💻 Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) installed on your machine
-- npm (comes with Node.js)
-
-### Installation & Run
+## 💻 Installation & Run
 
 1. **Clone the repository**
-
    ```bash
    git clone https://github.com/VarshaChandak/URL-Shortener-App
    cd URL-Shortener-App
 
-  2.Install dependencies
-  
-      npm install
+2. Install dependencies
 
- 3. Start the backend server
+   ```bash
 
-    ```bash
+    cd backend
+    npm install
+
+3. Setup Security : Create a .env file in the backend folder and add your API key:
+
+   ```bash
+
+    GOOGLE_API_KEY=your_api_key_here
+ 
+5. Start the server
+
+     ```bash
       npm start
 
   ## 📸 Screenshots
-  ![image](https://github.com/user-attachments/assets/8031b3fc-313e-4493-b600-109b666f5871)
 
-  
-
-
+ <img width="1910" height="887" alt="image" src="https://github.com/user-attachments/assets/8058dabf-4fc6-420f-836f-8cb6606f0b1a" />
 
