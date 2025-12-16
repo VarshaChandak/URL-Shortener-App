@@ -2,9 +2,17 @@ const express = require('express');
 const { nanoid } = require('nanoid');
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios'); // <--- 1. Added Axios here
 const app = express();
 const PORT = 3000;
 
+// --- SECURITY CONFIGURATION ---
+/// NEW WAY (SECURE) ✅
+require('dotenv').config(); // Load the secret file
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const SAFE_BROWSING_URL = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${GOOGLE_API_KEY}`;
+
+// --- DATABASE SETUP ---
 const dbFile = path.join(__dirname, 'urls.json');
 let urls = fs.existsSync(dbFile) ? JSON.parse(fs.readFileSync(dbFile)) : {};
 
@@ -12,10 +20,51 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-app.post('/shorten', (req, res) => {
+// --- SECURITY FUNCTION ---
+// 2. This function checks if the URL is a virus/phishing site
+async function checkUrlSafety(urlToCheck) {
+  const requestBody = {
+    client: {
+      clientId: "url-shortener-app",
+      clientVersion: "1.0.0"
+    },
+    threatInfo: {
+      threatTypes: ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE"],
+      platformTypes: ["ANY_PLATFORM"],
+      threatEntryTypes: ["URL"],
+      threatEntries: [ { url: urlToCheck } ]
+    }
+  };
+
+  try {
+    const response = await axios.post(SAFE_BROWSING_URL, requestBody);
+    // If "matches" exists, it means Google found a threat
+    if (response.data && response.data.matches) {
+      return false; // ❌ UNSAFE
+    }
+    return true; // ✅ SAFE
+  } catch (error) {
+    console.error("Google API Error:", error.message);
+    return true; // If API fails, we default to allowing it (or you can block it)
+  }
+}
+
+// --- ROUTES ---
+
+// 3. Made this route ASYNC to wait for the check
+app.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
+
   if (!isValidUrl(longUrl)) {
     return res.status(400).json({ error: 'Invalid URL' });
+  }
+
+  // 4. PERFORM SECURITY CHECK BEFORE SAVING
+  const isSafe = await checkUrlSafety(longUrl);
+  if (isSafe === false) {
+    return res.status(400).json({ 
+      error: '🚫 UNSAFE URL DETECTED! We cannot shorten malicious links.' 
+    });
   }
 
   const existingId = Object.keys(urls).find(id => urls[id] === longUrl);
